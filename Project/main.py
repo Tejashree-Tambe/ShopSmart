@@ -1,8 +1,8 @@
-
-
 from flask import Flask, render_template, Response,redirect,request
 from camera import VideoCamera
 import os
+import sys
+
 app = Flask(__name__)
 
 CART=[]
@@ -43,10 +43,6 @@ def contact():
 @app.route('/about')
 def about():
     return render_template('about.html')
-
-@app.route('/features')
-def features():
-    return render_template('features.html')
 
 def gen(camera):
     while True:

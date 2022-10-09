@@ -1,4 +1,5 @@
 import cv2
+import sys
 
 class VideoCamera(object):
     def __init__(self):

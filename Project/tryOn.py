@@ -4,6 +4,7 @@ from PIL import ImageTk
 import cv2, threading, os, time
 from threading import Thread
 from os import listdir
+import sys
 from os.path import isfile, join
 
 import dlib
@@ -75,7 +76,8 @@ def detectUpperBody(image):
     cascade = cv2.CascadeClassifier(cascadePath)
     Rect = cascade.detectMultiScale(imageGray, scaleFactor=1.1, minNeighbors=1, minSize=(1,1)) 
     if len(Rect) <= 0:
-	    return False	
+        return False	
+        
     else:
 	    return Rect
 

@@ -9,6 +9,8 @@ from os.path import isfile, join
 import dlib
 from imutils import face_utils, rotate_bound
 import math
+import sys
+
 
 ACTIVE_IMAGES=[0 for i in range(100)]
 def put_sprite(num, k):
