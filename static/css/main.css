@@ -3664,3 +3664,37 @@ input.num-product::-webkit-inner-spin-button {
   }
 
 }
+
+/* .btn{
+  margin-left: 100px;
+} */
+
+.product_img{
+  height: 300px;
+}
+
+.description{
+  margin-left: 100px;
+}
+
+.cart_button, .recommend_button{
+  margin-left: 50px;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+.column img {
+  margin-top: 12px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

@@ -5,6 +5,37 @@ import sys
 
 app = Flask(__name__)
 
+products = ["1.png", "2.png", "3.png", "4.png"]
+
+product_list = {
+     "products": [
+     {
+        "name": "1.png",
+        "description": "Pink",
+        "price": 'Rs. 121',
+     },
+
+     {
+        "name": "2.png",
+        "description": "Pink",
+        "price": 'Rs. 145',
+     },
+
+     {
+        "name": "3.png",
+        "description": "Pink",
+        "price": 'Rs. 130',
+     },
+
+     {
+        "name": "4.png",
+        "description": "Pink",
+        "price": 'Rs. 160',
+     }
+     ]
+}
+price = ["Rs.121", "Rs.131", "Rs.141", "Rs.121"]
+
 CART=[]
 
 @app.route('/checkOut')
@@ -34,7 +65,7 @@ def index():
 
 @app.route('/product')
 def product():
-    return render_template('product.html')
+    return render_template('product.html', product_list=product_list)
 
 def gen(camera):
     while True:
@@ -56,5 +87,5 @@ def video_feed():
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
     
