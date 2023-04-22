@@ -21,7 +21,7 @@ def tryon(file_path):
 def tryall():
         CART = request.form['mydata'].replace(',', '/')
         os.system('python test.py ' + CART)
-        render_template('checkout.html', message='')
+        return render_template('checkout.html', message='')
 
 
 @app.route('/')
