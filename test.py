@@ -200,7 +200,7 @@ root.grid_columnconfigure(0, weight=1)
 top_frame.grid(row=0, sticky="ew")
 center.grid(row=1, sticky="nsew")
 btm_frame.grid(row=4, sticky="ew")
-logo = ImageTk.PhotoImage(Image.open('D:\ShopSmart-master\Project\static\images\icons\Try-Buy.png').resize((120,60)))
+logo = ImageTk.PhotoImage(Image.open('D:\College\BE Project\ShopSmart\static\images\icons\Try-Buy.png').resize((120,60)))
 model_label = Label(top_frame,image=logo)
 
 model_label.grid(row=0, columnspan=3)

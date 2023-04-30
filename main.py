@@ -2,6 +2,8 @@ from flask import Flask, render_template, Response,redirect,request
 from camera import VideoCamera
 import os
 import sys
+import json
+from recommend import extract_img_features,model, features_list, recommend, img_files_list
 
 app = Flask(__name__)
 
@@ -38,21 +40,53 @@ price = ["Rs.121", "Rs.131", "Rs.141", "Rs.121"]
 
 CART=[]
 
+def path_in_static(prev_path):
+    return "static/"+prev_path
+
 @app.route('/checkOut')
 def checkOut():
     return render_template('checkout.html')
 
-@app.route('/tryon/<file_path>',methods = ['POST', 'GET'])
+""" @app.route('/tryon/<file_path>',methods = ['POST', 'GET'])
 def tryon(file_path):
-	file_path = file_path.replace(',','/')
-	os.system('python tryOn.py ' + file_path)
-	return redirect('http://127.0.0.1:5000/',code=302, Response=None)
+    file_path = file_path.replace(',','/')
+    os.system('python tryOn.py ' + file_path)
+    return redirect('http://127.0.0.1:5000/',code=302, Response=None) """
 
 @app.route('/tryall',methods = ['POST', 'GET'])
 def tryall():
         CART = request.form['mydata'].replace(',', '/')
         os.system('python test.py ' + CART)
-        render_template('checkout.html', message='')
+        return render_template('checkout.html', message='')
+
+@app.route('/recommend',methods = ['POST', 'GET'])
+def recommendation():
+    #print(request.files["img"].mimetype)
+
+    # save image
+    # mime_to_ext={"image/png":".png", "image/jpg":".jpg", "image/jpeg":".jpeg"}
+    # img_file=request.files["img"]
+    # file_name=img_file.name + mime_to_ext[img_file.content_type]
+    # file_path=os.path.join("uploader", file_name)
+    # img_file.save(file_path)
+
+    
+    file_path=request.json.get("img_path")
+
+    #feature extraction
+    features = extract_img_features(file_path, model)
+
+    # #recommend
+    img_indices = recommend(features, features_list)
+    
+    #render
+    items=[]
+    for i in range(0,4):
+        items.append(path_in_static(img_files_list[img_indices[0][i]]))
+    print(items)
+
+    return items
+    # return render_template('product.html', product_list=product_list, items=items)
 
 
 @app.route('/')
@@ -87,5 +121,6 @@ def video_feed():
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 if __name__ == '__main__':
+    if not os.path.exists("uploader"):
+        os.makedirs("uploader")
     app.run(debug=True)
-    
