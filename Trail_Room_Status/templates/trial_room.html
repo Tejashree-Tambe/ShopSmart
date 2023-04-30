@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+	{% for coll in collection %}
+		<h1>Room No: {{coll.room_no}}</h1>
+		<p>Room Status: </p>
+		{% if coll.available %}
+        	<div>blah blah blah blah</div>
+    	{% else %}
+			<div>for for</div>
+    	{% endif %}
+	{% endfor %}
+</body>
+</html>
