@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
-from flask_restful import Resource, Api, reqparse
-import pandas as pd
+# from flask_restful import Resource, Api, reqparse
+# import pandas as pd
 import ast
 import pymongo
 
@@ -9,11 +9,15 @@ db = client["ShopSmart"]
 col = db["rooms"]
 collections = col.find({})
 
+
+
 app = Flask(__name__)        
 
 @app.route('/')
 def trial_room():
-    return render_template("trial_room.html", collection = collections)  
+    avail_col = col.find("available" == "true")
+
+    return render_template("trial_room.html", collection = collections, avail_col = avail_col)  
  
 if __name__ == '__main__':
     app.run(debug=True)

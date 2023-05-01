@@ -1,6 +1,28 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="static/css/main.css">
+	</head>
 <body>
+    
+	{% if avail_col == None %}
+		<div class="alert" style="background-color: #f44336;">
+			<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+			<strong>Sorry!</strong> No Rooms available at the moment, please wait for a few mins.
+		</div>
+		
+	{% else %}
+		{% for col in avail_col %}
+			{% if col.available %}
+			<div class="alert" style="background-color: #04AA6D;">
+				<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+				<strong>Welcome!</strong> Room {{col.room_no}} is available for trial.
+			</div>
+			{% endif %}
+			<br>
+		{% endfor %}
+	{% endif %}
+
 	{% for coll in collection %}
 		<h1>Room No: {{coll.room_no}}</h1>
 		<p>Room Status: </p>
@@ -10,5 +32,11 @@
 			<div>for for</div>
     	{% endif %}
 	{% endfor %}
+
+	<script>
+		$funtion(){
+
+		}
+	</script>
 </body>
 </html>
