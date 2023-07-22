@@ -19,7 +19,8 @@ The user section consists of a homepage which contains the shop button on clicki
 [Click here to open dataset](https://www.kaggle.com/datasets/paramaggarwal/fashion-product-images-dataset) </br>
 We have pre-trained the classification models on the DeepFashion dataset that consists of 44,441 garment images. </br>
 </br> 
-<b>2. Recommendation  Dataset </b>
+
+<b>2. Recommendation  Dataset </b></br>
 [Click here to open dataset](https://www.v7labs.com/open-datasets/deep-fashion) </br>
 The images from Kaggle Fashion Product Images Dataset. The inventory is then run through the neural networks to classify and generate user's attributes. </br>
 <br>
